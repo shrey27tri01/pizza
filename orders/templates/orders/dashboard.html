@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            Dashboard
+        </title>
+    </head>
+    <body>
+        <h1>Hello, {{ user.username }}</h1>
+        <ul>
+            <li>Currently logged in as: {{user.username}}</li>
+            <li><a href="{% url 'logout' %}">logout</a></li>
+        </ul>
+        <br><br>
+        <h1>MENU</h1>
+        <h2>pizzas:</h2>
+        <ul>
+            {% for pizza in pizzas %}
+                <li>{{ pizza }}</li>
+                <form action="{% url 'update_cart' product.slug %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="addtocart">
+                </form>
+                <br><br><br>
+            {% endfor %}
+        </ul>
+
+
+        <h2>Toppings</h2>
+        <ul>
+            {% for topping in toppings %}
+                <li>{{ topping }}</li>
+            {% endfor %}
+        </ul>
+        
+        
+        <h2>Subs</h2>
+        <ul>
+            {% for sub in subs %}
+                <li>{{ sub }}</li>
+                <form action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="addtocart">
+                </form>
+                <br><br><br>
+            {% endfor %}
+        </ul>
+
+
+        <h2>Dinner platters</h2>
+        <ul>
+            {% for platter in dinnerplatters %}
+                <li>{{ platter }}</li>
+                <form action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="addtocart">
+                </form>
+                <br><br><br>
+            {% endfor %}
+        </ul>
+
+
+        <h2>Pasta</h2>
+        <ul>
+            {% for past in pasta %}
+                <li>{{ past }}</li>
+                <form action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="addtocart">
+                </form>
+                <br><br><br>
+
+            {% endfor %}
+        </ul>
+
+
+        <h2>Salads</h2>
+        <ul>
+            {% for salad in salads %}
+                <li>{{ salad }}</li>
+                <form action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart" class="addtocart">
+                </form>
+                <br><br><br>
+
+            {% endfor %}
+        </ul>
+
+    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.addtocart').forEach(elem => {
+                elem.onclick = () => {
+                    alert("Item added to cart");
+                };
+            });
+        });
+    </script>
+</html>

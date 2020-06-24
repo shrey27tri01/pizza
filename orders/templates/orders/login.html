@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            LOGIN
+        </title>
+    </head>
+    <body>
+        <h1>Login</h1>
+        {% if message %}
+            <div>
+                {{ message }}
+            </div>
+        {% endif %}
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <input name="username" type="text"/>
+            <input name="password" type="password"/>
+            <input type="submit" value="Login"/>
+        </form>
+        <br>
+        Or <a href="{% url 'signup' %}">register</a> instead..
+    </body>
+</html>
